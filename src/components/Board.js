@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const Board = props => {
     const divStyle = {
@@ -7,12 +7,16 @@ const Board = props => {
         margin: 3
     }
 
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    const toggleFavorite = () => setIsFavorite(!isFavorite)
+
     return (
         <div style={divStyle}>
             <div className="d-flex justify-content-between">
                 <h1>{props.name}</h1>
-                {props.isFav && <button className="btn btn-warning" disabled>Favorited!</button>}
-                {!props.isFav && <button className="btn btn-warning">Favorite</button>}
+                {isFavorite && <button className="btn btn-success" onClick={toggleFavorite}>Favorited!</button>}
+                {!isFavorite && <button className="btn btn-warning" onClick={toggleFavorite}>Favorite</button>}
             </div>
         </div>
     );
